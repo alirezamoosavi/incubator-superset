@@ -82,6 +82,16 @@ services:
     restart: unless-stopped
     depends_on: *superset-depends-on
     volumes: *superset-volumes
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    depends_on:
+      - superset
+    ports:
+      - '4040:80'
 
 volumes:
   superset_home:
