@@ -79,7 +79,7 @@ services:
     env_file: docker/.env
     depends_on: *superset-depends-on
     volumes: *superset-volumes
-
+    
   superset-worker:
     build: *superset-build
     container_name: superset_worker
@@ -90,9 +90,10 @@ services:
     volumes: *superset-volumes
   nginx:
     image: nginx:alpine
+    container_name: superset_nginx
     restart: unless-stopped
     volumes:
-      - ./nginx/default.conf /etc/nginx/conf.d/default.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - superset
     ports:
