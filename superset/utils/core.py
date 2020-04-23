@@ -1239,7 +1239,7 @@ def time_function(func: Callable, *args, **kwargs) -> Tuple[float, Any]:
     start = default_timer()
     response = func(*args, **kwargs)
     stop = default_timer()
-    return stop - start, response
+    return (stop - start) * 1000.0, response
 
 
 def MediumText() -> Variant:
@@ -1350,9 +1350,9 @@ class DbColumnType(Enum):
     TEMPORAL = 2
 
 
-class FilterOperationType(str, Enum):
+class FilterOperator(str, Enum):
     """
-    Filter operation type
+    Operators used filter controls
     """
 
     EQUALS = "=="
